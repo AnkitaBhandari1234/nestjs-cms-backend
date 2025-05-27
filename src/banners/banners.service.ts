@@ -1,0 +1,33 @@
+import { Injectable } from '@nestjs/common';
+import { CreateBannerDto } from './dto/create-banner.dto';
+import { UpdateBannerDto } from './dto/update-banner.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Banner } from './entities/banner.entity';
+import { Repository } from 'typeorm';
+
+@Injectable()
+export class BannersService {
+  constructor(
+    @InjectRepository(Banner) private readonly BannerRepo:Repository<Banner>
+  ){}
+  async create(createBannerDto: CreateBannerDto) {
+    const data=this.BannerRepo.create(createBannerDto);
+    return await this.BannerRepo.save(data);
+  }
+
+   async findAll() {
+    return await this.BannerRepo.find();
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} banner`;
+  }
+
+  update(id: number, updateBannerDto: UpdateBannerDto) {
+    return `This action updates a #${id} banner`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} banner`;
+  }
+}
