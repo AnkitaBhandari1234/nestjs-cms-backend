@@ -1,17 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Banner {
-    @PrimaryGeneratedColumn('uuid')
-    id:string
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title:string;
+  @Column()
+  title: string;
 
-    @Column()
-    subtitle:string;
+  @Column()
+  subtitle: string;
 
-    @Column()
-    description:string;
+  @Column()
+  description: string;
 
+  @Column()
+  like: number;
+
+  @Column()
+  comments: number;
 }

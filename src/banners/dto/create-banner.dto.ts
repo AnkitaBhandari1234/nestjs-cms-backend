@@ -9,4 +9,12 @@ export class CreateBannerDto {
 
   @ApiProperty()
   description: string;
+
+  @ApiProperty()
+  like:number
+
+  @ApiProperty()
+  comments: number;
+
+
 }

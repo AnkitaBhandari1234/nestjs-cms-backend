@@ -29,5 +29,6 @@ export class BannersService {
 
   remove(id: number) {
     return `This action removes a #${id} banner`;
+   
   }
 }
