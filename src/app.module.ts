@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BannersModule } from './banners/banners.module';
 import { Banner } from './banners/entities/banner.entity';
+import { AboutusModule } from './aboutus/aboutus.module';
+import { BlogcardModule } from './blogcard/blogcard.module';
+import { BlogcontentModule } from './blogcontent/blogcontent.module';
+import { TestimonialModule } from './testimonial/testimonial.module';
 
 @Module({
   imports: [
@@ -21,6 +25,14 @@ import { Banner } from './banners/entities/banner.entity';
     }),
 
      BannersModule,
+
+     AboutusModule,
+
+     BlogcardModule,
+
+     BlogcontentModule,
+
+     TestimonialModule,
   ],
   controllers: [AppController],
   providers: [AppService],
