@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateBlogcardDto } from './dto/create-blogcard.dto';
 import { UpdateBlogcardDto } from './dto/update-blogcard.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,7 +27,10 @@ export class BlogcardService {
     return `This action updates a #${id} blogcard`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} blogcard`;
+  async remove(id: number) {
+    const data=await this.BlogcardRepo.findOneBy({id:id});
+    console.log(data);
+    if(!data) throw HttpException
+    return await this.BlogcardRepo.remove(data);
   }
 }

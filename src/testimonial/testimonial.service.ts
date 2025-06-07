@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateTestimonialDto } from './dto/create-testimonial.dto';
 import { UpdateTestimonialDto } from './dto/update-testimonial.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,7 +27,10 @@ export class TestimonialService {
     return `This action updates a #${id} testimonial`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} testimonial`;
+  async remove(id: number) {
+    const data=await this.TestimonialRepo.findOneBy({id:id});
+    console.log(data);
+    if(!data) throw HttpException
+    return await this.TestimonialRepo.remove(data);
   }
 }

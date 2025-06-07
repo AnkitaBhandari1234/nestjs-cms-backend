@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateBannerDto } from './dto/create-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,8 +27,11 @@ export class BannersService {
     return `This action updates a #${id} banner`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} banner`;
+  async remove(id: number) {
+    const data=await this.BannerRepo.findOneBy({id:id})
+    console.log(data);
+    if(!data) throw HttpException
+    return await this.BannerRepo.remove(data)
    
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateBlogcontentDto } from './dto/create-blogcontent.dto';
 import { UpdateBlogcontentDto } from './dto/update-blogcontent.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,7 +27,10 @@ export class BlogcontentService {
     return `This action updates a #${id} blogcontent`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} blogcontent`;
+  async remove(id: number) {
+    const data= await this.BlogcontentRepo.findOneBy({id:id});
+    console.log(data);
+   if(!data) throw HttpException
+   return await this.BlogcontentRepo.remove(data);
   }
 }
