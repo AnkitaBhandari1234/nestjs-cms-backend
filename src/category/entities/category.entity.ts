@@ -1,12 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
-export class Blogcontent {
-  @PrimaryGeneratedColumn()
+export class Category {
+    @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  name: string;
+
+ 
 
   @Column()
   description: string;
+  @Column()
+  price: number;
 }

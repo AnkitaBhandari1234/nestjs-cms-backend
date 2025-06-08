@@ -8,6 +8,7 @@ import { AboutusModule } from './aboutus/aboutus.module';
 import { BlogcardModule } from './blogcard/blogcard.module';
 import { BlogcontentModule } from './blogcontent/blogcontent.module';
 import { TestimonialModule } from './testimonial/testimonial.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -33,6 +34,8 @@ import { TestimonialModule } from './testimonial/testimonial.module';
      BlogcontentModule,
 
      TestimonialModule,
+
+     CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
