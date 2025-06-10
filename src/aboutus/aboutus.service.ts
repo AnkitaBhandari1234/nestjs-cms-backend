@@ -21,8 +21,10 @@ export class AboutusService {
     return await this.AboutusRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} aboutus`;
+  async findOne(id: number) {
+      const data=await this.AboutusRepo.findOneBy({id:id});
+       if(!data) throw HttpException
+    return data ;
   }
 
   update(id: number, updateAboutusDto: UpdateAboutusDto) {

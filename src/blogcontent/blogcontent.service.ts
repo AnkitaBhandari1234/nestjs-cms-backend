@@ -19,10 +19,11 @@ export class BlogcontentService {
    return await this.BlogcontentRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} blogcontent`;
+ async findOne(id: number) {
+      const data=await this.BlogcontentRepo.findOneBy({id:id});
+       if(!data) throw HttpException
+    return data ;
   }
-
   update(id: number, updateBlogcontentDto: UpdateBlogcontentDto) {
     return `This action updates a #${id} blogcontent`;
   }

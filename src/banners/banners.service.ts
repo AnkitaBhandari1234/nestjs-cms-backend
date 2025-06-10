@@ -19,8 +19,10 @@ export class BannersService {
     return await this.BannerRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} banner`;
+  async findOne(id: number) {
+      const data=await this.BannerRepo.findOneBy({id:id});
+       if(!data) throw HttpException
+    return data ;
   }
 
   update(id: number, updateBannerDto: UpdateBannerDto) {

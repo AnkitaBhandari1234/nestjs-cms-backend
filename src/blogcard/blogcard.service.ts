@@ -19,8 +19,10 @@ export class BlogcardService {
     return await this.BlogcardRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} blogcard`;
+   async findOne(id: number) {
+      const data=await this.BlogcardRepo.findOneBy({id:id});
+       if(!data) throw HttpException
+    return data ;
   }
 
   update(id: number, updateBlogcardDto: UpdateBlogcardDto) {

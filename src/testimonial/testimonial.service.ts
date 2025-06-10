@@ -8,10 +8,11 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class TestimonialService {
   constructor(
-          @InjectRepository(Testimonial) private readonly TestimonialRepo:Repository<Testimonial>
-        ){}
+    @InjectRepository(Testimonial)
+    private readonly TestimonialRepo: Repository<Testimonial>,
+  ) {}
   async create(createTestimonialDto: CreateTestimonialDto) {
-    const data=this.TestimonialRepo.create(createTestimonialDto);
+    const data = this.TestimonialRepo.create(createTestimonialDto);
     return await this.TestimonialRepo.save(data);
   }
 
@@ -19,8 +20,10 @@ export class TestimonialService {
     return await this.TestimonialRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} testimonial`;
+   async findOne(id: number) {
+    const data=await this.TestimonialRepo.findOneBy({id:id});
+       if(!data) throw HttpException
+    return data ;
   }
 
   update(id: number, updateTestimonialDto: UpdateTestimonialDto) {
@@ -28,9 +31,9 @@ export class TestimonialService {
   }
 
   async remove(id: number) {
-    const data=await this.TestimonialRepo.findOneBy({id:id});
+    const data = await this.TestimonialRepo.findOneBy({ id: id });
     console.log(data);
-    if(!data) throw HttpException
+    if (!data) throw HttpException;
     return await this.TestimonialRepo.remove(data);
   }
 }
