@@ -25,8 +25,12 @@ export class BannersService {
     return data ;
   }
 
-  update(id: number, updateBannerDto: UpdateBannerDto) {
-    return `This action updates a #${id} banner`;
+  async update(id: number, updateBannerDto: UpdateBannerDto) {
+    const data=await this.BannerRepo.findOneBy({id:id})
+    console.log(data);
+    if(!data) throw HttpException
+    Object.assign(data,updateBannerDto)
+    return await this.BannerRepo.save(data);
   }
 
   async remove(id: number) {

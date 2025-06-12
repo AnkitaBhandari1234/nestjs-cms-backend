@@ -25,14 +25,19 @@ export class BlogcardService {
     return data ;
   }
 
-  update(id: number, updateBlogcardDto: UpdateBlogcardDto) {
-    return `This action updates a #${id} blogcard`;
+   async update(id: number, updateBlogcardDto: UpdateBlogcardDto) {
+     const data=await this.BlogcardRepo.findOneBy({id:id});
+    console.log(data);
+    if(!data) throw HttpException
+    Object.assign(data,updateBlogcardDto)
+    return await this.BlogcardRepo.save(data);
   }
 
   async remove(id: number) {
     const data=await this.BlogcardRepo.findOneBy({id:id});
     console.log(data);
     if(!data) throw HttpException
+ 
     return await this.BlogcardRepo.remove(data);
   }
 }

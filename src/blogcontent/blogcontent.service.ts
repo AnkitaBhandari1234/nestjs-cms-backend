@@ -24,8 +24,12 @@ export class BlogcontentService {
        if(!data) throw HttpException
     return data ;
   }
-  update(id: number, updateBlogcontentDto: UpdateBlogcontentDto) {
-    return `This action updates a #${id} blogcontent`;
+  async update(id: number, updateBlogcontentDto: UpdateBlogcontentDto) {
+     const data= await this.BlogcontentRepo.findOneBy({id:id});
+    console.log(data);
+   if(!data) throw HttpException
+   Object.assign(data,updateBlogcontentDto)
+    return await this.BlogcontentRepo.save(data);
   }
 
   async remove(id: number) {

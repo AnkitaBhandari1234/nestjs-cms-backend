@@ -27,8 +27,12 @@ export class AboutusService {
     return data ;
   }
 
-  update(id: number, updateAboutusDto: UpdateAboutusDto) {
-    return `This action updates a #${id} aboutus`;
+ async update(id: number, updateAboutusDto: UpdateAboutusDto) {
+     const data=await this.AboutusRepo.findOneBy({id:id});
+    console.log(data);
+    if(!data) throw HttpException
+     Object.assign(data,updateAboutusDto)
+    return await this.AboutusRepo.save(data);
   }
 
   async remove(id: number) {
