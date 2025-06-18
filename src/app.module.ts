@@ -9,6 +9,7 @@ import { BlogcardModule } from './blogcard/blogcard.module';
 import { BlogcontentModule } from './blogcontent/blogcontent.module';
 import { TestimonialModule } from './testimonial/testimonial.module';
 import { CategoryModule } from './category/category.module';
+import { FileuploadModule } from './fileupload/fileupload.module';
 
 @Module({
   imports: [
@@ -36,6 +37,8 @@ import { CategoryModule } from './category/category.module';
      TestimonialModule,
 
      CategoryModule,
+
+     FileuploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
